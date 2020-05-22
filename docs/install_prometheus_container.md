@@ -54,8 +54,9 @@ scrape_configs:
 
 ### 4. Khởi tạo container Prometheus
 ```sh
-docker run -d --name prometheus -p 9090:9090 \
+docker run -d --restart=always --name prometheus -p 9090:9090 \
 -v /home/sysadmin/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+-v /home/sysadmin/prometheus/host_alert.rules.yml:/etc/prometheus/host_alert.rules.yml \
 -v promql:/prometheus \
 prom/prometheus --config.file=/etc/prometheus/prometheus.yml
 ```
